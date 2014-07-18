@@ -44,7 +44,7 @@ class FlairTipBot(Bot):
             'join_not_authorized' : 'You are not allowed to subscribe me to this subreddit.',
             'leave_not_authorized': 'You are not allowed to unsubscribe me to this subreddit.'
         }
-        self.messages['welcome_gift'] = 'welcome_gift': '\n\nWelcome to /r/RedditPointTrade. You have been given a complementary Reddit ({1}{2}.00).'
+        self.messages['welcome_gift'] =  '\n\nWelcome to /r/RedditPointTrade. You have been given a complementary Reddit ({1}{2}.00).'
         self.messages['welcome_gift'] += '\n\nLearn more at /r/RedditPointTrade/wiki/about.'
         self.messages['welcome_gift'] += '\n\n___\n\n'
         self.messages['welcome_gift'] += '\n\n^(**[Verified]** /u/RPTtipbot -> /u/{0} {1}{2}.00)'
