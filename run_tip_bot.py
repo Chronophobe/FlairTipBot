@@ -93,6 +93,9 @@ class FlairTipBot(Bot):
         leave = self.triggers['pm_leave'].search(message.body)
         balance = self.triggers['pm_balance'].search(message.body)
 
+        is_new  = self.new_user(message.author)
+        if is_new:
+            message.reply(is_new)
         if tip:
             reply = self.tip_user(tip.group(2), user_from = message.author, user_to = tip.group(1))
             message.reply(reply)
