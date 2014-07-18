@@ -168,7 +168,7 @@ class FlairTipBot(Bot):
         if not flair or not flair['flair_text'] or flair['flair_text'] == '':
             self.flair_user(user, self.gift_amount)
             logging.info('New user: {0}'.format(str(user)))
-            return welcome_message = self.messages['welcome_gift'].format(str(user), self.currency, self.gift_amount)
+            return self.messages['welcome_gift'].format(str(user), self.currency, self.gift_amount)
         else:
             return None
 
