@@ -69,7 +69,7 @@ class FlairTipBot(Bot):
 
     # Check comment for triggers
     def check_triggers(self, comment, subreddit):
-        if subreddit == self.home:
+        if subreddit.lower() == self.home.display_name.lower():
             is_new  = self.new_user(comment.author)
         else:
             is_new = False
