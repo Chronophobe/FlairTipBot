@@ -41,7 +41,7 @@ class FlairTipBot(Bot):
             'pm_tip'      : '[RPT] Private Transaction',
             'pm_join'     : 'RedditPointTrade Bot joined your subreddit. For more info check /r/{0} or contact /u/{1}'.format(str(self.home), str(self.owner)),
             'pm_leave'    : 'RedditPointTrade Bot has left your subreddit.',
-            'pm_balance'  : 'Your /r/RedditPointTrade balance is: {0}'
+            'pm_balance'  : 'Your /r/RedditPointTrade balance is: {}{:,}'
         }
         self.flair_css = 'balance'
 
@@ -100,7 +100,7 @@ class FlairTipBot(Bot):
             self.reddit.send_message(tip.group(1), self.messages['pm_tip'], reply)
         elif balance:
             flair = self.flair_to_int(user=message.author)
-            message.reply(self.messages['pm_balance'].format(str(flair)))
+            message.reply(self.messages['pm_balance'].format(self.currency, flair))
         elif join:
             try:
                 joined_sub = self.reddit.get_subreddit(join.group(2))
