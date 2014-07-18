@@ -41,7 +41,9 @@ class FlairTipBot(Bot):
             'pm_tip'      : '[RPT] Private Transaction',
             'pm_join'     : 'RedditPointTrade Bot joined your subreddit. For more info check /r/{0} or contact /u/{1}'.format(str(self.home), str(self.owner)),
             'pm_leave'    : 'RedditPointTrade Bot has left your subreddit.',
-            'pm_balance'  : 'Your /r/RedditPointTrade balance is: {}{:,}'
+            'pm_balance'  : 'Your /r/RedditPointTrade balance is: {}{:,}',
+            'join_not_authorized' : 'You are not allowed to subscribe me to this subreddit.',
+            'leave_not_authorized': 'You are not allowed to unsubscribe me to this subreddit.'
         }
         self.flair_css = 'balance'
 
@@ -107,15 +109,21 @@ class FlairTipBot(Bot):
         elif join:
             try:
                 joined_sub = self.reddit.get_subreddit(join.group(2))
-                joined_sub.subscribe()
-                self.reddit.send_message(joined_sub, 'Automated Message', self.messages['pm_join'])
+                if message.author in self.reddit.get_moderators(joined_sub) or self.reddit.get_moderators(self.home):
+                    joined_sub.subscribe()
+                    self.reddit.send_message(joined_sub, 'Automated Message', self.messages['pm_join'])
+                else:
+                    message.reply(self.messages['join_not_authorized'])
             except:
                 message.reply('We failed to join your sub.')
         elif leave:
             #try:
             left_sub = self.reddit.get_subreddit(leave.group(2))
-            left_sub.unsubscribe()
-            self.reddit.send_message(left_sub, 'Automated Message', self.messages['pm_leave'])
+            if message.author in self.reddit.get_moderators(left_sub) or self.reddit.get_moderators(self.home):
+                left_sub.unsubscribe()
+                self.reddit.send_message(left_sub, 'Automated Message', self.messages['pm_leave'])
+            else:
+                message.reply(self.messages['leave_not_authorized'])
             #except:
             #    message.reply('We failed to leave your sub. I notified my owner (/u/{0}) with the problem.'.format(str(self.owner)))
             #    self.reddit.send_message(self.owner, 'Task Failure', 'Failed to leave /r/{0} on orders of /u/{1}'.format(leave.group(2), str(message.author)))
