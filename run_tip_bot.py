@@ -37,7 +37,6 @@ class FlairTipBot(Bot):
             'verified'    : '\n\n^(**[Verified]** /u/{0} -> /u/{1} {2}{3}.00)',
             'accepted'    : '\n\n^(**[Verified]** /u/{0} -> /u/{1} {2}{3}.00)',
             'failed'      : '\n\n^(**[Failed]** /u/{0} -/-> /u/{1} {2}{3}.00)',
-            'welcome_gift': '\n\nWelcome to /r/RedditPointTrade. You have been given a complementary Reddit ({1}{2}.00).\n\nLearn more at /r/RedditPointTrade/wiki/about.',
             'pm_tip'      : '[RPT] Private Transaction',
             'pm_join'     : 'RedditPointTrade Bot joined your subreddit. For more info check /r/{0} or contact /u/{1}'.format(str(self.home), str(self.owner)),
             'pm_leave'    : 'RedditPointTrade Bot has left your subreddit.',
@@ -45,6 +44,10 @@ class FlairTipBot(Bot):
             'join_not_authorized' : 'You are not allowed to subscribe me to this subreddit.',
             'leave_not_authorized': 'You are not allowed to unsubscribe me to this subreddit.'
         }
+        self.messages['welcome_gift'] = 'welcome_gift': '\n\nWelcome to /r/RedditPointTrade. You have been given a complementary Reddit ({1}{2}.00).'
+        self.messages['welcome_gift'] += '\n\nLearn more at /r/RedditPointTrade/wiki/about.'
+        self.messages['welcome_gift'] += '\n\n___\n\n'
+        self.messages['welcome_gift'] += '\n\n^(**[Verified]** /u/RPTtipbot -> /u/{0} {1}{2}.00)'
         self.flair_css = 'balance'
 
     def run(self):
@@ -165,7 +168,7 @@ class FlairTipBot(Bot):
         if not flair or not flair['flair_text'] or flair['flair_text'] == '':
             self.flair_user(user, self.gift_amount)
             logging.info('New user: {0}'.format(str(user)))
-            return self.messages['welcome_gift'].format(str(user), self.currency, self.gift_amount)
+            return welcome_message = self.messages['welcome_gift'].format(str(user), self.currency, self.gift_amount)
         else:
             return None
 
