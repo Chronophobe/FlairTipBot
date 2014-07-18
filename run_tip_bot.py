@@ -37,7 +37,7 @@ class FlairTipBot(Bot):
             'verified'    : '\n\n^(**[Verified]** /u/{0} -> /u/{1} {2}{3}.00)',
             'accepted'    : '\n\n^(**[Verified]** /u/{0} -> /u/{1} {2}{3}.00)',
             'failed'      : '\n\n^(**[Failed]** /u/{0} -/-> /u/{1} {2}{3}.00)',
-            'welcome_gift': '\n\nWelcome to /r/RedditPointTrade. You have been given a complementary Reddit ({1}{2}.00). \n\n Learn more at /r/RedditPointTrade/wiki/about.'
+            'welcome_gift': '\n\nWelcome to /r/RedditPointTrade. You have been given a complementary Reddit ({1}{2}.00).\n\nLearn more at /r/RedditPointTrade/wiki/about.',
             'pm_tip'      : '[RPT] Private Transaction',
             'pm_join'     : 'RedditPointTrade Bot joined your subreddit. For more info check /r/{0} or contact /u/{1}'.format(str(self.home), str(self.owner)),
             'pm_leave'    : 'RedditPointTrade Bot has left your subreddit.',
